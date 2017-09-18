@@ -14,8 +14,8 @@ else {
     dirEnd = process.argv[4] ? process.argv[4] : '/home';
 };
 
-console.log('dirS',dirStart);
-console.log('dirS',dirEnd);
+console.log('dirS', dirStart);
+console.log('dirS', dirEnd);
 
 module.exports = function (app) {
 
@@ -25,4 +25,11 @@ module.exports = function (app) {
                 console.log(content);
             })
         })
+    else if (mode == '-c') {
+        apiFileSystem.getContentFile(dirStart, (err, nameFile, contentFile) => {
+            apiFileSystem.creatNewFileWithIncrementalContent(dirEnd, nameFile, contentFile, 1000000, (err, msg) => {
+                console.log(msg);
+            })
+        })
+    }
 }
